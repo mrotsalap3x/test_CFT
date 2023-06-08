@@ -19,6 +19,7 @@ class Command(BaseCommand):
         requests = [
             CreditRequest(title="CFT Credit Request 1", contract=contracts[0]),
             CreditRequest(title="CFT Credit Request 2", contract=contracts[1]),
+            CreditRequest(title="CFT Credit Request 3", contract=contracts[1]),
         ]
         save_list(requests)
         producers = [
@@ -26,17 +27,25 @@ class Command(BaseCommand):
             Producer(title="CFT Producer 2"),
             Producer(title="CFT Producer 3"),
             Producer(title="CFT Producer 4"),
+            Producer(title="CFT Producer 5"),
+            Producer(title="CFT Producer 6"),
+            Producer(title="CFT Producer 7"),
         ]
         save_list(producers)
         products = [
-            Product(title="CFT Product 1", producer=producers[0], request=requests[0]),
-            Product(title="CFT Product 2", producer=producers[0], request=None),
-            Product(title="CFT Product 3", producer=producers[1], request=requests[1]),
-            Product(title="CFT Product 4", producer=producers[1], request=requests[0]),
-            Product(title="CFT Product 5", producer=producers[2], request=requests[1]),
-            Product(title="CFT Product 6", producer=producers[2], request=requests[1]),
-            Product(title="CFT Product 7", producer=producers[2], request=requests[0]),
-            Product(title="CFT Product 8", producer=producers[3], request=requests[1]),
-            Product(title="CFT Product 9", producer=producers[3], request=None),
+            Product(title="CFT Product 01", producer=producers[0], request=requests[0]),
+            Product(title="CFT Product 02", producer=producers[0], request=requests[2]),
+            Product(title="CFT Product 03", producer=producers[1], request=requests[1]),
+            Product(title="CFT Product 04", producer=producers[1], request=requests[2]),
+            Product(title="CFT Product 05", producer=producers[2], request=requests[1]),
+            Product(title="CFT Product 06", producer=producers[2], request=requests[1]),
+            Product(title="CFT Product 07", producer=producers[2], request=requests[0]),
+            Product(title="CFT Product 08", producer=producers[3], request=requests[1]),
+            Product(title="CFT Product 09", producer=producers[3], request=None),
+            Product(title="CFT Product 10", producer=producers[4], request=requests[1]),
+            Product(title="CFT Product 11", producer=producers[4], request=requests[1]),
+            Product(title="CFT Product 12", producer=producers[5], request=requests[0]),
+            Product(title="CFT Product 13", producer=producers[5], request=requests[0]),
+            Product(title="CFT Product 14", producer=producers[6], request=requests[2]),
         ]
         save_list(products)

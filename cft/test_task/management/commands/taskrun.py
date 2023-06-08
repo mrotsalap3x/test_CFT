@@ -6,13 +6,14 @@ class Command(BaseCommand):
         from test_task.models import Contract, CreditRequest, Producer, Product
 
         def get_producers_by_contract(contract_id):
-            credit_request = CreditRequest.objects.get(contract_id=contract_id)
-            #  this .distinct() clause is not supported by sqlite3 engine, will work on mysql or postgresql
-            # products = credit_request.product_set.distinct("producer_id").values_list("producer_id")
-            # return [p[0] for p in products]
-            #  to work around this nuance in sqlite I'll use python set
-            products = credit_request.product_set.values_list("producer_id")
-            return [p[0] for p in set(products)]
+            #  with other db engines except sqlite we can use .distinct("producer_id") clause to
+            #  get unique IDs right from the database, but with sqlite I'll use python dicts
+            credit_requests = CreditRequest.objects\
+                .filter(contract_id=contract_id)\
+                .select_related("product")\
+                .values_list("product__producer_id")
+
+            return {cr[0]: cr[0] for cr in credit_requests}.values()
 
 
         print(get_producers_by_contract(32812))
